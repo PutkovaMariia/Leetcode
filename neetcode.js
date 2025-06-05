@@ -23,7 +23,36 @@
 //     }
 //     return true
 // }
+///////////////////////
+//https://codeinterview.io/
+//request closure, this, call/apply/bind, animation frame, counter, promise, pure function, webworker in browser, two way data binding, server side rendering
+//create interesting pet project
+//from interview below
+// import { useCallback, useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+// import './App.css'
 //
+// const Child = React.memo((props) => {
+//     return <div>1</div>
+// })
+//
+// function App() {
+//     const [count, setCount] = useState(0)
+//
+//     const h = useCallback(() => { }, [])
+//
+//     return (
+//         <>
+//             <div>
+//                 <Child onClick={h}/>
+//             </div>
+//         </>
+//     )
+// }
+//
+// export default App
+///////////////////////
 // console.log(isAnagram(s, t));
 
 //Two Sum
@@ -210,3 +239,89 @@
 // const nums = [1,2,2,3,4,4,4];
 // const res = [...new Set(nums.filter(num=> nums.indexOf(num) !== nums.lastIndexOf(num)))];
 // console.log(res);
+
+////////////////
+//closure — це коли повернена внутрішня функція «пам’ятає» змінні з того контексту, у якому вона створилася, навіть якщо зовнішня функція вже завершилася.
+//closure means that the inner function retains access to the variables (its scope) of the outer function even after the outer function has finished executing.
+// function counter(){
+//     let count = 0;
+//     return function (){
+//         count++;
+//         console.log(count);
+//     }
+// }
+// const increment = counter();
+// increment();
+// increment();
+
+////////////////
+//this
+// const person = {
+//     name: 'Alice',
+//     greet() {
+//         console.log(`Hello, my name is ${this.name}`);
+//     }
+// };
+//
+// const anotherPerson = {
+//     name: 'Bob'
+// };
+//
+// person.greet();//Hello, my name is Alice
+// person.greet.call(anotherPerson);//Hello, my name is Bob
+// const greetFunc = person.greet.bind(person); greetFunc();//Hello, my name is Alice
+// const boundGreet = person.greet.bind(anotherPerson) ; boundGreet();//Hello, my name is Bob
+////
+// const calculator = {
+//     number: 5,
+//     multiplyBy: function(x) {
+//         return function() {
+//             console.log(this.number * x);
+//         };
+//     }
+// };
+//
+//    const double = calculator.multiplyBy(2).bind(calculator);
+//    double();
+////
+
+// const user = {
+//     name: 'Carol',
+//     age: 30,
+//     getAgeArrow: () => {
+//         //Arrow functions don’t get their own this—they inherit it from their surrounding scope. In a module file, that surrounding scope has this === undefined.
+//         console.log(this.age);
+//     },
+//     getAgeRegular() {
+//         console.log(this.age);
+//     }
+// };
+//
+// const stranger = {
+//     name: 'Dave',
+//     age: 45
+// };
+//
+// user.getAgeArrow();    // undefined
+// user.getAgeRegular();  // 30
+//
+// const fn = user.getAgeRegular;
+// fn();                  // undefined
+//
+// const newUserAge = user.getAgeRegular.bind(stranger);
+// newUserAge(); //45
+
+/////
+// function factorial(n) {
+//     if ( n === 0 || n === 1) return 1;
+//     return  n * factorial(n-1)
+// }
+//
+// console.log(factorial(5));//120
+
+/////
+// function reversedStr(s){
+//     return s.split('').reverse().join('');
+// }
+//
+// console.log(reversedStr('hi'));//ih
